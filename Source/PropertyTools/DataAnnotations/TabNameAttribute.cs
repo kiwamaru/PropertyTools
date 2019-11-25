@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CategoryAttribute.cs" company="PropertyTools">
+// <copyright file="TabNameAttribute.cs" company="PropertyTools">
 //   Copyright (c) 2014 PropertyTools contributors
 // </copyright>
 // <summary>
-//   Specifies the name of the category in which to group the property or event when displayed in a PropertyGrid control.
+//   Specifies the name of the tab in which to group the property or event when displayed in a PropertyGrid control.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
