@@ -19,6 +19,7 @@ namespace ExampleLibrary
         private Dictionary<string, ValidationResult> errors = new Dictionary<string, ValidationResult>();
 
         private string name;
+        private string name2;
 
         [AutoUpdateText]
         [Description("Should not be empty.")]
@@ -33,6 +34,21 @@ namespace ExampleLibrary
             {
                 this.name = value;
                 this.Validate("Name", !string.IsNullOrEmpty(this.name), "Name should be specified");
+            }
+        }
+        [AutoUpdateText]
+        [Description("Should not be empty.")]
+        public string Name2
+        {
+            get
+            {
+                return this.name2;
+            }
+
+            set
+            {
+                this.name2 = value;
+                this.Validate("Name2", !string.IsNullOrEmpty(this.name2), "Name2 should be specified");
             }
         }
 

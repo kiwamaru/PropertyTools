@@ -118,6 +118,7 @@ namespace PropertyTools.Wpf
         {
             // validate all properties in this tab
             this.HasErrors = this.Groups.Any(g => g.Properties.Any(p => ndei.HasErrors));
+            RaisePropertyChanged(nameof(HasErrors));
         }
     }
 }
