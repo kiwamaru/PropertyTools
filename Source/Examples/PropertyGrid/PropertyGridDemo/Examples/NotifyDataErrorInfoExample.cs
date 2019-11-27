@@ -24,6 +24,7 @@ namespace ExampleLibrary
         public NotifyDataErrorInfoExample()
         {
             this.Name = string.Empty;
+            this.Name2 = string.Empty;
         }
 
         [AutoUpdateText]
