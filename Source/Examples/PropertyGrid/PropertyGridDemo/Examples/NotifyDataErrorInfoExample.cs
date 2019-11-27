@@ -16,10 +16,15 @@ namespace ExampleLibrary
     [PropertyGridExample]
     public class NotifyDataErrorInfoExample : Example, System.ComponentModel.INotifyDataErrorInfo
     {
-        private Dictionary<string, ValidationResult> errors = new Dictionary<string, ValidationResult>();
+        private readonly Dictionary<string, ValidationResult> errors = new Dictionary<string, ValidationResult>();
 
         private string name;
         private string name2;
+
+        public NotifyDataErrorInfoExample()
+        {
+            this.Name = string.Empty;
+        }
 
         [AutoUpdateText]
         [Description("Should not be empty.")]
@@ -68,7 +73,7 @@ namespace ExampleLibrary
                 this.errors.Remove(propertyName);
             }
 
-            this.ErrorsChanged(this, new System.ComponentModel.DataErrorsChangedEventArgs(propertyName));
+            this.ErrorsChanged?.Invoke(this, new System.ComponentModel.DataErrorsChangedEventArgs(propertyName));
         }
 
         IEnumerable System.ComponentModel.INotifyDataErrorInfo.GetErrors(string propertyName)
