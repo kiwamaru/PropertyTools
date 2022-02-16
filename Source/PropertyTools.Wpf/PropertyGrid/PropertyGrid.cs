@@ -183,7 +183,7 @@ namespace PropertyTools.Wpf
             nameof(MaximumLabelWidth),
             typeof(double),
             typeof(PropertyGrid),
-            new UIPropertyMetadata(double.MaxValue));
+        new UIPropertyMetadata(double.MaxValue));
 
         /// <summary>
         /// Identifies the <see cref="MinimumLabelWidth"/> dependency property.
@@ -412,6 +412,11 @@ namespace PropertyTools.Wpf
         /// The zero to visibility converter.
         /// </summary>
         private static readonly ZeroToVisibilityConverter ZeroToVisibilityConverter = new ZeroToVisibilityConverter();
+
+        /// <summary>
+        /// The zero to visibility converter.
+        /// </summary>
+        private static readonly MinusConverter MinusConverter = new MinusConverter();
 
         /// <summary>
         /// The current selected object type.
@@ -1339,9 +1344,13 @@ namespace PropertyTools.Wpf
             {
                 Width = GridLength.Auto,
                 MinWidth = this.MinimumLabelWidth,
-                MaxWidth = this.MaximumLabelWidth,
                 SharedSizeGroup = this.LabelWidthSharing != LabelWidthSharing.NotShared ? "labelColumn" : null
             };
+            //GridSplitter Outsize Screen Issue
+            Binding maxWidthBinding = new Binding(nameof(ActualWidth));
+            maxWidthBinding.Source = panel;
+            maxWidthBinding.Converter = MinusConverter;
+            labelColumn.SetBinding(System.Windows.Controls.ColumnDefinition.MaxWidthProperty, maxWidthBinding);
 
             propertyPanel.ColumnDefinitions.Add(labelColumn);
             propertyPanel.ColumnDefinitions.Add(new System.Windows.Controls.ColumnDefinition());
@@ -1838,7 +1847,7 @@ namespace PropertyTools.Wpf
         /// </summary>
         private void UpdateControls()
         {
-            if (this.Operator == null)
+           if (this.Operator == null)
             {
                 return;
             }
